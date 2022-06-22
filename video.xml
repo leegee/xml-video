@@ -1,29 +1,41 @@
 <xml>
     <meta name="author" value="Lee Goddard"/>
-    <meta name="description" value="XML to describe a video montage with title cards and sound"/>
+    <meta name="description" value="XML to describe a video montage with title htmls and sound"/>
 
-    <video with="1024" height="780">
+    <project with="1024" height="780">
 
         <sequence>
             <sound src='sound1.mp3' duration='10000'>
-                <card class='title'>
+                <html class='title'>
                     <h1>This shows when the sound is playing</h1>
-                </card>
+                </html>
             </sound>
             <video src='clip1.mkv'/>
         </sequence>
 
         <sequence>
+            <html duration='3000'>
+                <h1>Slide One</h1>
+            </html>
+            <html duration='2000'>
+                <h1>Slide Two</h1>
+            </html>
+            <html duration='3000'>
+                <h1>Slide Three</h1>
+            </html>
+        </sequence>
+
+        <sequence>
             <sound src='voiceover-dictates-duration-of-children.mp3'>
-                <card class='title' duration='3000'>
-                    <h1>A three second card during the voice over</h1>
-                </card>
+                <html class='title' duration='3000'>
+                    <h1>A three second html during the voice over</h1>
+                </html>
                 <video src='clip3.mkv' duration='10000'/>
             </sound>
 
-            <card class='$css-class' duration='4000' transition-in='1s fade' transition-out='1s fade'>
-                <h1>A four-second card with a fade in and out</h1>
-            </card>
+            <html class='$css-class' duration='4000' transition-in='1s fade' transition-out='1s fade'>
+                <h1>A four-second html with a fade in and out</h1>
+            </html>
 
             <video src='video-dictates-duration.mkv'>
                 <sound src='sound-fx-ten-seconds-in.mp3' start='10000'>
@@ -34,18 +46,22 @@
             <sound src='applause.mp3'/>
         </sequence>
 
-    </video>
+    </project>
 </xml>
 
 <!-- 
+    XML to descirbe a video composed of video clips, sound clips, and HTML -- sequentially and overlaid.
+
     NB: Overlays are acheived by having multiple items in a sequence have the same start value, optionally setting the `blend`, `width`, `height`, `top`, `left` positions.
+
+    Project: contains a sequence. Sets global output options.
 
     Sequnce: a series of items in chronoligcal order; all items have to be in a sequence. Any item can contain any other item.
         
         * sequence
         * video
         * sound 
-        * card
+        * html
 
         All have properties as below: If not specified, they inherit the parent properties. If no ancestor has a particular attribute, it defaults to the subject's full duration, 
         
